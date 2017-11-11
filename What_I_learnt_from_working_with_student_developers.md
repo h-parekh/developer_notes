@@ -25,6 +25,7 @@ I consider students as a very powerful group of people: they are hungry for know
 * It has helped us whet our documentation and clarifying assumptions
 * Better documentation has lowered the cost of context switching for other team members to work on different projects
 * We have started making a conscious effort improve the process of capturing, describing,  organizing work and most importantly defining what 'done' looks like
+* Having a neutral opinion from our students in exploratory discussions brought fresh perspectives and questions we didn't originally think about
 * We've made great progress in keeping our momentum and maturing in the quality assurance space.
 
 ## Myth: It takes a lot of overhead to mentor and train a student.
