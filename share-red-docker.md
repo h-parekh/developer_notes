@@ -34,12 +34,14 @@ Docker has the benefit of easy portability from local development to cloud. [AWS
 * It also addresses [SR-5](#sr-5).
 * Closes https://github.com/share-research/share-red/issues/11
 
-# Parking lot
-
-### Open Question: What repo structure should we have for the different custom nodes? Options are:
-  1. Simplest way, we maintain separate repos for each custom node. Need to make sure the same static files are used across the repos for design consistency.
-  2. Alternatively, keep a monorepo so static content like icons can be shared. Can they be published as one package if they nodes are all sub modules in the monorepo?
-
-### To Do:
-  1. Articulate a strategy to maintain docker images, so we don't have to rebuild everytime
-  2.
+# Running to do:
+  1. - [ ] Research spike: Articulate a strategy to maintain docker images, so we don't have to rebuild everytime
+  2. - [ ] Make decision: Decide on a naming convention for share-research custom nodes. [node-red documentation](https://nodered.org/docs/creating-nodes/packaging) doesn't mandate prefixes, so we could use `share-` prefix.
+  ```
+Node modules should use node-red-contrib- as a prefix to their name to make it clear they are not maintained by the Node-RED project. Alternatively, any name that doesn’t use node-red as a prefix can be used.
+  ```
+  3. - [ ] Make decision: What repo structure should we have for the different custom nodes? Options are:
+      1. Simplest way, we maintain separate repos for each custom node. Need to make sure the same static files are used across the repos for design consistency.
+      2. Alternatively, keep a monorepo so static content like icons can be shared. Can they be published as one package if they nodes are all sub modules in the monorepo?
+  4. - [ ] Discuss use case: Do we want users to be able to collaborate over editing workflows in the cloud instance?
+  5. - [ ] Research spike: Research data [mounting strategy](https://docs.docker.com/storage/) in Docker. Helps determine workflow for [SR-3](#sr-3)
