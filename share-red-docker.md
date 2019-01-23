@@ -24,14 +24,22 @@ Docker has the benefit of easy portability from local development to cloud. [AWS
 
 # Progress
 
+### 2019-01-23
+* Ryan added the custom node [share-lower-case](https://www.npmjs.com/package/share-lower-case) to npm, and I was able to add it as a dependency.
+
 ### 2019-01-22
 * Created new repo [share-red-docker](https://github.com/h-parekh/share-red-docker)
 * addresses the full requirement of node-red version upgrade in [SR-1](#sr-1)
 * partially addresses [SR-2](#sr-2) by being able to handle custom nodes as dependencies. Needs more testing with 'share-lower-case'
 * It also addresses [SR-5](#sr-5).
+* Closes https://github.com/share-research/share-red/issues/11
 
 # Parking lot
 
 ### Open Question: What repo structure should we have for the different custom nodes? Options are:
   1. Simplest way, we maintain separate repos for each custom node. Need to make sure the same static files are used across the repos for design consistency.
   2. Alternatively, keep a monorepo so static content like icons can be shared. Can they be published as one package if they nodes are all sub modules in the monorepo?
+
+### To Do:
+  1. Articulate a strategy to maintain docker images, so we don't have to rebuild everytime
+  2.
