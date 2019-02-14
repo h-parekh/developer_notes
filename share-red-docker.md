@@ -14,6 +14,13 @@ Allow a team to iterate over a flow using node-red projects
 Build a cloud based runtime (For both editing and running?... tbd)
 ### SR-5
 Use custom settings.js for share-research
+### SR-6
+Queueing engine to send jobs to a node-red worker.
+  1. Queue should send: URL to github flowfile
+  2. Queue should be scalable
+### SR-7
+  1. Programmatically clone a git repo which contains a flow
+  1. Programmatically install flow dependencies
 
 # How
 There is an existing community using a dockerized version of node-red (although not up-to-date with the latest node-red version). See [node-red-docker](https://hub.docker.com/r/nodered/node-red-docker/).
@@ -23,6 +30,16 @@ Docker has the benefit of easy portability from local development to cloud. [AWS
 
 
 # Progress
+
+### 2019-02-13
+* Added ability to clone flow from github project into NR runtime (See [commit](https://github.com/h-parekh/share-red-docker/commit/e7f9c4b5255384b4e86e21cec7215a96736f8d42)). Addresses [SR-7](#sr-7.1)
+* I've researched about horizontal and vertical scaling of Bull Queue (Add whiteboard pic)
+* Need to use a visual UI to test and play around with this. Couple options from Bull v3 docs:
+  - [Taskforce](https://taskforce.sh/) - Paid version
+  - [Arena](https://github.com/mixmaxhq/arena) - FOSS
+
+### 2019-02-05
+* Created a simple [queueing engine](https://github.com/h-parekh/share-queue-engine) with bull and redis. Addresses [SR-6.1]((#sr-6))
 
 ### 2019-01-23
 * Ryan added the custom node [share-lower-case](https://www.npmjs.com/package/share-lower-case) to npm, and I was able to add it as a dependency.
@@ -40,5 +57,26 @@ Docker has the benefit of easy portability from local development to cloud. [AWS
   1. Research spike: Research data [mounting strategy](https://docs.docker.com/storage/) in Docker. Helps determine workflow for [SR-3](#sr-3)
     * Concern: Latency and conflict issues may occur with multiple node-red instances trying to access the same disk.
     * Filesystem conflicts during runtime? What files are written to the user directory when node-red executes a flow?
-  1. Trigger mechanism: Do we need a queue like Bulljs that spins up node-red workers and shuts them down after execution?
-    * Put a node-red workflow into bull and see if we can run that. On the local machine.
+  1. ToDo: Clone github repo (Assumed and manually added for now)
+    * There's two approaches:
+      1. Clone the repository with git commands within the dockerfile at the time the image is built and update the `.config.json` of node-red runtime with the
+      a json object like shown below. This is literally hacking into the runtime files and may cause unknown behavior. This is also the reason why loading an external volume with the git workflow doesn't automatically register it as a `NR project`
+      ```json
+      {
+        "name": "share-red-flows-yet-another-name",
+        "credentialSecret": "",
+        "git": {
+          "remotes": {
+            "origin": {
+              "url": "https://github.com/share-research/share-red-flows.git",
+              "username": "",
+              "password": ""
+            }
+          }
+        }
+      }
+      ```
+      2. Call a node-red API endpoint. There isn't an officially published API for this yet. Quick conversation with NR core devs informed me that this could
+      be a feature in the future, and its unlikely to change fundamentally from the way it is right now. So I watched the http traffic from the browser while cloning a project and identified a POST /projects API that can do this operation.
+  1. ToDo: Flow specific dependencies (Assumed and manually added for now)
+    * This isn't a huge concern for me at the moment. I think its best handled to preload the docker image with all the required nodes to minimize initialization time.
