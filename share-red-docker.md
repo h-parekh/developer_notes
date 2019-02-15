@@ -32,14 +32,14 @@ Docker has the benefit of easy portability from local development to cloud. [AWS
 # Progress
 
 ### 2019-02-13
-* Added ability to clone flow from github project into NR runtime (See [commit](https://github.com/h-parekh/share-red-docker/commit/e7f9c4b5255384b4e86e21cec7215a96736f8d42)). Addresses [SR-7](#sr-7.1)
+* Added ability to clone flow from github project into NR runtime (See [commit](https://github.com/h-parekh/share-red-docker/commit/e7f9c4b5255384b4e86e21cec7215a96736f8d42)). Addresses [SR-7.1](#sr-7)
 * I've researched about horizontal and vertical scaling of Bull Queue (Add whiteboard pic)
 * Need to use a visual UI to test and play around with this. Couple options from Bull v3 docs:
   - [Taskforce](https://taskforce.sh/) - Paid version
   - [Arena](https://github.com/mixmaxhq/arena) - FOSS
 
 ### 2019-02-05
-* Created a simple [queueing engine](https://github.com/h-parekh/share-queue-engine) with bull and redis. Addresses [SR-6.1]((#sr-6))
+* Created a simple [queueing engine](https://github.com/h-parekh/share-queue-engine) with bull and redis. Addresses [SR-6.1](#sr-6)
 
 ### 2019-01-23
 * Ryan added the custom node [share-lower-case](https://www.npmjs.com/package/share-lower-case) to npm, and I was able to add it as a dependency.
