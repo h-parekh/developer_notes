@@ -81,3 +81,5 @@ Docker has the benefit of easy portability from local development to cloud. [AWS
       be a feature in the future, and its unlikely to change fundamentally from the way it is right now. So I watched the http traffic from the browser while cloning a project and identified a POST /projects API that can do this operation.
   1. ToDo: Flow specific dependencies (Assumed and manually added for now)
     * This isn't a huge concern for me at the moment. I think its best handled to preload the docker image with all the required nodes to minimize initialization time.
+  1. Sending message from Bull queue to spawn and run a flow
+    - Start with one node-red instance per machine (concurrency: 1)
